@@ -9,5 +9,8 @@
     <Folder Include="Models\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
+    <Folder Include="Services\Application\" />
+    <Folder Include="Services\Application\RegisterAccountDetail\" />
+    <Folder Include="Services\Application\SearchAccountDetail\" />
   </ItemGroup>
 </Project>
