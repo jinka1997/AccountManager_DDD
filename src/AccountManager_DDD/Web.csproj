@@ -8,6 +8,6 @@
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'AccountManager_DDD' ">
     <StartAction>Project</StartAction>
-    <ApplicationURL>http://localhost:5002</ApplicationURL>
+    <ApplicationURL>http://localhost:5000</ApplicationURL>
   </PropertyGroup>
 </Project>

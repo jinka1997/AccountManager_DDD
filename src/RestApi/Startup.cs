@@ -10,8 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using AmInfrastructure;
 
-namespace Api
+namespace RestApi
 {
     public class Startup
     {
@@ -26,6 +28,8 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<AmContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AmContext"),x => x.MigrationsAssembly("RestApi")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
