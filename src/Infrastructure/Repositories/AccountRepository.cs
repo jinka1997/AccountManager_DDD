@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using AmDomain.Models;
 using AmDomain.Repositories;
-namespace Infrastructure.Repositories
+namespace AmInfrastructure.Repositories
 {
     public class AccountRepository : IAccountRepository
     {

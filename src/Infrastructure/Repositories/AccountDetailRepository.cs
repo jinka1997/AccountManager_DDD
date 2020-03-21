@@ -2,38 +2,59 @@
 using System.Collections.Generic;
 using AmDomain.Models;
 using AmDomain.Repositories;
-namespace Infrastructure.Repositories
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+namespace AmInfrastructure.Repositories
 {
     public class AccountDetailRepository : IAccountDetailRepository
     {
-
+        private DateTime _from;
+        private DateTime _to;
+        private string _keyword;
+        private AmContext _db { set; get; }
 
         public AccountDetailRepository()
         {
         }
         public AccountDetail FindById(int id)
         {
-            throw new NotImplementedException();
+            var accountDetail = _db.AccountDetails
+                                .Where(ad => ad.Id == id)
+                                .Include("Account")
+                                .Include("AccountType")
+                                .Include("Book")
+                                .FirstOrDefault();
+            return accountDetail;
         }
 
         public IEnumerable<AccountDetail> GetAll()
         {
-            throw new NotImplementedException();
+            var accountDetails = _db.AccountDetails
+                    .Include("Account")
+                    .Include("AccountType")
+                    .Include("Book")
+                    .ToList();
+            return accountDetails;
         }
 
         public void Add(AccountDetail item)
         {
-            throw new NotImplementedException();
+            _db.AccountDetails.Add(item);
         }
 
         public void Update(AccountDetail item)
         {
-            throw new NotImplementedException();
+            var entity = this.FindById(item.Id);
+            if (entity == null)
+            {
+                throw new Exception();
+            }
+            entity = item;
         }
 
         public void Delete(AccountDetail item)
         {
-            throw new NotImplementedException();
+            _db.AccountDetails.Remove(item);
         }
     }
 }

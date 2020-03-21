@@ -3,12 +3,12 @@ namespace AmDomain.Models
 {
     public class Entity
     {
-        protected int Id { set; get; }
+        public int Id { private set; get; }
 
 
-        protected DateTimeOffset CreatedOn { set; get; }
-        protected DateTimeOffset ModifiedAt { set; get; }
+        public DateTimeOffset CreatedOn { private set; get; }
+        public DateTimeOffset ModifiedAt { private set; get; }
 
-        protected long VersionNo { set; get; }
+        public long VersionNo { private set; get; }
     }
 }
