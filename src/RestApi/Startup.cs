@@ -28,7 +28,7 @@ namespace RestApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AmContext>(options =>
+            services.AddDbContextPool<AmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AmContext"),x => x.MigrationsAssembly("RestApi")));
         }
 

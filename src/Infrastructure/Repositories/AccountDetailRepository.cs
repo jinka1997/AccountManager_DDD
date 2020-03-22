@@ -37,6 +37,7 @@ namespace AmInfrastructure.Repositories
             return accountDetails;
         }
 
+
         public void Add(AccountDetail item)
         {
             _db.AccountDetails.Add(item);
@@ -55,6 +56,19 @@ namespace AmInfrastructure.Repositories
         public void Delete(AccountDetail item)
         {
             _db.AccountDetails.Remove(item);
+        }
+
+        public IEnumerable<AccountDetail> GetByCondition(DateTime from, DateTime to, string keyword)
+        {
+            var accountDetails = _db.AccountDetails
+                    .Where(ad => ad.SettlementDay >= from)
+                    .Where(ad => ad.SettlementDay <= to)
+                    .Where(ad => EF.Functions.Like(ad.Remarks,$"%{keyword}%"))
+                    .Include("Account")
+                    .Include("AccountType")
+                    .Include("Book")
+                    .ToList();
+            return accountDetails;
         }
     }
 }
