@@ -9,7 +9,5 @@ namespace AmDomain.Models
         public int SortOrder { set; get; }
 
         public Account Account { set; get; }
-        public ICollection<AccountDetail> AccountDetail { set; get; }
-
     }
 }

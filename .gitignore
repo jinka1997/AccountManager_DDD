@@ -403,3 +403,7 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+/src/RestApi/Migrations/AmContextModelSnapshot.cs
+/src/RestApi/Migrations/20200321132955_Y.Designer.cs
+/src/RestApi/Migrations/20200321132955_Y.cs
+/src/RestApi/Migrations

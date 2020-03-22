@@ -8,6 +8,5 @@ namespace AmDomain.Models
         public string Password { set; get; }
         public string Salt { set; get; }
 
-        public ICollection<AccountDetail> AccountDetail { set; get; }
     }
 }

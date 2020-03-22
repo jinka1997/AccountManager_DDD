@@ -13,12 +13,13 @@ namespace AmInfrastructure.Repositories
         private string _keyword;
         private AmContext _db { set; get; }
 
-        public AccountDetailRepository()
+        public AccountDetailRepository(AmContext context)
         {
+            _db = context;
         }
         public AccountDetail FindById(int id)
         {
-            var accountDetail = _db.AccountDetails
+            var accountDetail = _db.AccountDetail
                                 .Where(ad => ad.Id == id)
                                 .Include("Account")
                                 .Include("AccountType")
@@ -29,7 +30,7 @@ namespace AmInfrastructure.Repositories
 
         public IEnumerable<AccountDetail> GetAll()
         {
-            var accountDetails = _db.AccountDetails
+            var accountDetails = _db.AccountDetail
                     .Include("Account")
                     .Include("AccountType")
                     .Include("Book")
@@ -39,7 +40,7 @@ namespace AmInfrastructure.Repositories
 
         public void Add(AccountDetail item)
         {
-            _db.AccountDetails.Add(item);
+            _db.AccountDetail.Add(item);
         }
 
         public void Update(AccountDetail item)
@@ -54,7 +55,7 @@ namespace AmInfrastructure.Repositories
 
         public void Delete(AccountDetail item)
         {
-            _db.AccountDetails.Remove(item);
+            _db.AccountDetail.Remove(item);
         }
     }
 }

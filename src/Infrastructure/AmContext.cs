@@ -5,9 +5,15 @@ namespace AmInfrastructure
 {
     public class AmContext : DbContext
     {
-        public DbSet<Account> Accounts { set; get; }
-        public DbSet<AccountDetail> AccountDetails { set; get; }
-        public DbSet<AccountType> AccountTypes { set; get; }
-        public DbSet<Book> Books { set; get; }
+        public AmContext(DbContextOptions options)
+            :base(options)
+        {
+
+        }
+
+        public DbSet<Account> Account { set; get; }
+        public DbSet<AccountDetail> AccountDetail { set; get; }
+        public DbSet<AccountType> AccountType { set; get; }
+        public DbSet<Book> Book { set; get; }
     }
 }
