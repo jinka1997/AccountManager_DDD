@@ -12,5 +12,6 @@
     <Folder Include="Services\Application\" />
     <Folder Include="Services\Application\RegisterAccountDetail\" />
     <Folder Include="Services\Application\SearchAccountDetail\" />
+    <Folder Include="Services\Application\RegisterBook\" />
   </ItemGroup>
 </Project>

@@ -8,10 +8,7 @@ namespace AmInfrastructure.Repositories
 {
     public class AccountDetailRepository : IAccountDetailRepository
     {
-        private DateTime _from;
-        private DateTime _to;
-        private string _keyword;
-        private AmContext _db { set; get; }
+        private AmContext _db;
 
         public AccountDetailRepository(AmContext context)
         {
@@ -38,6 +35,7 @@ namespace AmInfrastructure.Repositories
             return accountDetails;
         }
 
+
         public void Add(AccountDetail item)
         {
             _db.AccountDetail.Add(item);
@@ -56,6 +54,19 @@ namespace AmInfrastructure.Repositories
         public void Delete(AccountDetail item)
         {
             _db.AccountDetail.Remove(item);
+        }
+
+        public IEnumerable<AccountDetail> GetByCondition(DateTime from, DateTime to, string keyword)
+        {
+            var accountDetails = _db.AccountDetails
+                    .Where(ad => ad.SettlementDay >= from)
+                    .Where(ad => ad.SettlementDay <= to)
+                    .Where(ad => EF.Functions.Like(ad.Remarks,$"%{keyword}%"))
+                    .Include("Account")
+                    .Include("AccountType")
+                    .Include("Book")
+                    .ToList();
+            return accountDetails;
         }
     }
 }
