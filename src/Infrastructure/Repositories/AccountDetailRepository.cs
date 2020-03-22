@@ -4,6 +4,8 @@ using AmDomain.Models;
 using AmDomain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
+
 namespace AmInfrastructure.Repositories
 {
     public class AccountDetailRepository : IAccountDetailRepository
@@ -58,7 +60,7 @@ namespace AmInfrastructure.Repositories
 
         public IEnumerable<AccountDetail> GetByCondition(DateTime from, DateTime to, string keyword)
         {
-            var accountDetails = _db.AccountDetails
+            var accountDetails = _db.AccountDetail
                     .Where(ad => ad.SettlementDay >= from)
                     .Where(ad => ad.SettlementDay <= to)
                     .Where(ad => EF.Functions.Like(ad.Remarks,$"%{keyword}%"))
@@ -67,6 +69,16 @@ namespace AmInfrastructure.Repositories
                     .Include("Book")
                     .ToList();
             return accountDetails;
+        }
+
+        public int SaveChanges()
+        {
+            return _db.SaveChanges();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return _db.SaveChangesAsync();
         }
     }
 }

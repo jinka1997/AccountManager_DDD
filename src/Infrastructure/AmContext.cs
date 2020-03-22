@@ -11,7 +11,7 @@ namespace AmInfrastructure
 
         }
 
-        public DbSet<Account> Account { set; get; }
+        public DbSet<User> User { set; get; }
         public DbSet<AccountDetail> AccountDetail { set; get; }
         public DbSet<AccountType> AccountType { set; get; }
         public DbSet<Book> Book { set; get; }

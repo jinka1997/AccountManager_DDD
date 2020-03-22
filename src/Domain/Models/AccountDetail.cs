@@ -3,7 +3,6 @@ namespace AmDomain.Models
 {
     public class AccountDetail : Entity
     {
-        public int? AccountId { set; get; }
         public DateTimeOffset SettlementDay { set; get; }
         public int ItemNumber { set; get; }
         public int? AccountTypeId { set; get; }
@@ -12,7 +11,6 @@ namespace AmDomain.Models
         public string Remarks { set; get; }
         public int? BookId { set; get; }
 
-        public Account Account { set; get; }
         public AccountType AccountType { set; get; }
         public Book Book { set; get; }
     }

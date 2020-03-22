@@ -4,10 +4,10 @@ namespace AmDomain.Models
 {
     public class AccountType : Entity
     {
-        public int AccountId { set; get; }
+        public int BookId { set; get; }
         public string Name { set; get; }
         public int SortOrder { set; get; }
 
-        public Account Account { set; get; }
+        public Book Book { set; get; }
     }
 }
