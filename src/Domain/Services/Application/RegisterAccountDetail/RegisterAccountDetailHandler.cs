@@ -6,6 +6,5 @@ namespace AmDomain.Services.Application.RegisterAccountDetail
         public RegisterAccountDetailHandler()
         {
         }
-        
     }
 }
