@@ -8,13 +8,11 @@ namespace AmInfrastructure.Repositories
 {
     public class AccountDetailRepository : IAccountDetailRepository
     {
-        private DateTime _from;
-        private DateTime _to;
-        private string _keyword;
-        private AmContext _db { set; get; }
+        private AmContext _db;
 
-        public AccountDetailRepository()
+        public AccountDetailRepository(AmContext context)
         {
+            _db = context;
         }
         public AccountDetail FindById(int id)
         {
