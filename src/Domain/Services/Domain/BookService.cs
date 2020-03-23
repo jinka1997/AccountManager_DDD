@@ -19,7 +19,7 @@ namespace AmDomain.Services.Domain
         {
             //登録済？
             var exists = _bookRepository.Exists(userId, name);
-            if (!exists)
+            if (exists)
             {
                 throw new Exception("もうあるよ");
             }

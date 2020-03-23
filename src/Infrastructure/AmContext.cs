@@ -9,5 +9,10 @@ namespace AmInfrastructure
         public DbSet<AccountDetail> AccountDetail { set; get; }
         public DbSet<AccountType> AccountType { set; get; }
         public DbSet<Book> Book { set; get; }
+
+        public AmContext(DbContextOptions options)
+            :base(options)
+        { 
+        }
     }
 }

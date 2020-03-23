@@ -54,7 +54,7 @@ namespace RestApi.Controllers
         [HttpPut]
         public async Task PutBook()
         {
-            await _bookService.Register(1, "aaaxb");
+            await _bookService.Register(1, "aaaxba");
 
         }
 

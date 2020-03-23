@@ -17,6 +17,8 @@ namespace AmInfrastructure.Repositories
         public Repository(AmContext context)
         {
             _db = context;
+            _dbSet = context.Set<T>();
+
         }
 
         public virtual void Add(T item)
