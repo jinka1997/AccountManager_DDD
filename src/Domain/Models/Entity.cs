@@ -6,9 +6,9 @@ namespace AmDomain.Models
         public int Id { private set; get; }
 
 
-        public DateTimeOffset CreatedOn { private set; get; } = DateTimeOffset.Now;
-        public DateTimeOffset ModifiedAt { private set; get; } = DateTimeOffset.Now;
+        public DateTimeOffset CreatedOn { private set; get; }
+        public DateTimeOffset ModifiedAt { private set; get; }
 
-        public long VersionNo { private set; get; } = 1;
+        public long VersionNo { private set; get; }
     }
 }
