@@ -4,21 +4,21 @@ using AmDomain.Models;
 using AmDomain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using System.Threading.Tasks;
-
 namespace AmInfrastructure.Repositories
 {
     public class AccountDetailRepository : IAccountDetailRepository
     {
-        private AmContext _db;
+        private DateTime _from;
+        private DateTime _to;
+        private string _keyword;
+        private AmContext _db { set; get; }
 
-        public AccountDetailRepository(AmContext context)
+        public AccountDetailRepository()
         {
-            _db = context;
         }
         public AccountDetail FindById(int id)
         {
-            var accountDetail = _db.AccountDetail
+            var accountDetail = _db.AccountDetails
                                 .Where(ad => ad.Id == id)
                                 .Include("Account")
                                 .Include("AccountType")
@@ -29,7 +29,7 @@ namespace AmInfrastructure.Repositories
 
         public IEnumerable<AccountDetail> GetAll()
         {
-            var accountDetails = _db.AccountDetail
+            var accountDetails = _db.AccountDetails
                     .Include("Account")
                     .Include("AccountType")
                     .Include("Book")
@@ -40,7 +40,7 @@ namespace AmInfrastructure.Repositories
 
         public void Add(AccountDetail item)
         {
-            _db.AccountDetail.Add(item);
+            _db.AccountDetails.Add(item);
         }
 
         public void Update(AccountDetail item)
@@ -55,12 +55,12 @@ namespace AmInfrastructure.Repositories
 
         public void Delete(AccountDetail item)
         {
-            _db.AccountDetail.Remove(item);
+            _db.AccountDetails.Remove(item);
         }
 
         public IEnumerable<AccountDetail> GetByCondition(DateTime from, DateTime to, string keyword)
         {
-            var accountDetails = _db.AccountDetail
+            var accountDetails = _db.AccountDetails
                     .Where(ad => ad.SettlementDay >= from)
                     .Where(ad => ad.SettlementDay <= to)
                     .Where(ad => EF.Functions.Like(ad.Remarks,$"%{keyword}%"))
@@ -69,16 +69,6 @@ namespace AmInfrastructure.Repositories
                     .Include("Book")
                     .ToList();
             return accountDetails;
-        }
-
-        public int SaveChanges()
-        {
-            return _db.SaveChanges();
-        }
-
-        public Task<int> SaveChangesAsync()
-        {
-            return _db.SaveChangesAsync();
         }
     }
 }
