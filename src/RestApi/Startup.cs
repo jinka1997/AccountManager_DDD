@@ -12,6 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using AmInfrastructure;
+using AmDomain.Services.Domain;
+using AmDomain.Repositories;
+using AmInfrastructure.Repositories;
 
 namespace RestApi
 {
@@ -30,6 +33,9 @@ namespace RestApi
             services.AddControllers();
             services.AddDbContextPool<AmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AmContext"),x => x.MigrationsAssembly("RestApi")));
+
+            services.AddTransient<BookService>();
+            services.AddTransient<IBookRepository, BookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
